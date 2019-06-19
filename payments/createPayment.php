@@ -1,13 +1,13 @@
 <?php
-require 'vendor/autoload.php';
-require 'config.php';
+require '../vendor/autoload.php';
+require '../config.php';
 
 $payment = $client->payments()->create([
 	"params" => [
 		"amount" => 1000, // 10 GBP in pence
 		"currency" => "GBP",
 		"links" => [
-			"mandate" => "MD0000XH9A3T4C"
+			"mandate" => "MD0005V6TD8246"
 			// The mandate ID from last section
 		],
 		// Almost all resources in the API let you store custom metadata,
@@ -17,7 +17,7 @@ $payment = $client->payments()->create([
 		]
 	],
 	"headers" => [
-		"Idempotency-Key" => "random_payment_specific_string"
+		"Idempotency-Key" => sha1( time() )
 	]
 ]);
 
